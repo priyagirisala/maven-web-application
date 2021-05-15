@@ -98,14 +98,14 @@
 	
 	    <repository>
 	      <id>nexus</id>
-	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://3.26.2.28:9980/mithuntechnologies/repository/wallmart-release/</url>
+	      <name>Sowjanya Technologies Releases Nexus Repository</name>
+	      <url>http://15.206.88.24:9980/sowjanya/repository/wallmart-releas/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://3.26.2.28:9980/mithuntechnologies/repository/wallmart-snapshot/</url>
+	      <name>Sowjanya Technologies Snapshot Nexus Repository </name>
+	      <url>http://15.206.88.24:9980/sowjanya/repository/wallmart-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
