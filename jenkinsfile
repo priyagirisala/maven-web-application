@@ -1,0 +1,43 @@
+node
+{
+def mavenHome = tool name: "maven3.8.1"
+
+//properties([[$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '', numToKeepStr: '3')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+
+stage('CheckoutCode')
+{
+git branch: 'development', credentialsId: '9e1d7e81-6b9e-4bc6-95d2-7aa5e42fe2d1', url: 'https://github.com/priyagirisala/maven-web-application.git'
+
+ }
+stage('Build')
+{
+sh "${mavenHome}/bin/mvn clean package"
+}
+/*
+stage('ExecuteSonarQubeReport')
+{
+sh "${mavenHome}/bin/mvn sonar:sonar"
+}
+
+stage('UploadArtifactsintoNexus')
+{
+sh "${mavenHome}/bin/mvn deploye"
+}
+
+stage('DeployTomcatServer')
+{
+sshagent(['00a4cd73-4cf9-4d97-9e14-5d20e4c98afb']) {
+sh "scp -o StricHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.179.132:/opt/apache-tomcat-9.0.45/webapps/"
+}
+*/
+stage('SendEmailNotification')
+{
+emailext body: '''Buildover....
+
+
+Reagrds,
+sowjanya
+9381365422''', subject: 'Buildover....', to: 'sowjanyag873@gmail.com'
+}
+}
